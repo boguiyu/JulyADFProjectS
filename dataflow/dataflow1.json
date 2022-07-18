@@ -33,7 +33,20 @@
 					"name": "Sales"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"name": "sink1"
+				},
+				{
+					"name": "sink2"
+				},
+				{
+					"name": "sink3"
+				},
+				{
+					"name": "sink4"
+				}
+			],
 			"transformations": [
 				{
 					"name": "surrogateKey1"
@@ -48,7 +61,16 @@
 					"name": "surrogateKey4"
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "WaterMark"
+				},
+				{
+					"name": "WaterMark1"
+				},
+				{
+					"name": "WaterMark2"
+				},
+				{
+					"name": "WaterMark3"
 				}
 			],
 			"scriptLines": [
@@ -84,7 +106,26 @@
 				"Sales keyGenerate(output(SurrogateKey as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey4",
-				"surrogateKey1 derive(column1 = ERROR_FUNCTION('')) ~> derivedColumn1"
+				"surrogateKey1 derive(Watermakr = currentDate()) ~> WaterMark",
+				"surrogateKey2 derive(WaterMark = currentDate()) ~> WaterMark1",
+				"surrogateKey3 derive(WaterMark = ERROR_FUNCTION('')) ~> WaterMark2",
+				"surrogateKey4 derive(WaterMark = currentDate()) ~> WaterMark3",
+				"WaterMark sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"WaterMark1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"WaterMark2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink3",
+				"WaterMark3 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink4"
 			]
 		}
 	}
