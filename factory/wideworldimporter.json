@@ -1,0 +1,9 @@
+{
+	"name": "wideworldimporter",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "37dcebda-ff1e-4dd0-9632-c8e0c1fe9695",
+		"tenantId": "dfdb70e3-b783-42fe-9620-3375aa00115f"
+	}
+}

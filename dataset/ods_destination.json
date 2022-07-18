@@ -1,0 +1,13 @@
+{
+	"name": "ods_destination",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ODS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

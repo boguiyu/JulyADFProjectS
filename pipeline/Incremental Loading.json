@@ -1,0 +1,36 @@
+{
+	"name": "Incremental Loading",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Lists",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select Table_Schema, Table_Name\nfrom information_schema.Tables\nwhere Table_Schema = 'Purchasing'",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "SourceData",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2022-07-18T17:50:25Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
