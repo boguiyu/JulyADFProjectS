@@ -39,13 +39,6 @@
 						"referenceName": "ods_destination",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
-				},
-				{
-					"dataset": {
-						"referenceName": "ods_destination",
-						"type": "DatasetReference"
-					},
 					"name": "sink2"
 				},
 				{
@@ -61,6 +54,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink4"
+				},
+				{
+					"dataset": {
+						"referenceName": "ods_destination",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
 				}
 			],
 			"transformations": [
@@ -126,16 +126,6 @@
 				"surrogateKey2 derive(WaterMark = currentDate()) ~> WaterMark1",
 				"surrogateKey3 derive(WaterMark = ERROR_FUNCTION('')) ~> WaterMark2",
 				"surrogateKey4 derive(WaterMark = currentDate()) ~> WaterMark3",
-				"WaterMark sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
 				"WaterMark1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
@@ -165,7 +155,17 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink4"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink4",
+				"WaterMark sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}
 	}
