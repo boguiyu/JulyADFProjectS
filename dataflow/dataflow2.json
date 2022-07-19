@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "store1",
+						"referenceName": "ods_destination",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -30,7 +30,17 @@
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          CityID as integer,",
+				"          CityName as string,",
+				"          StateProvinceID as integer,",
+				"          Location as binary,",
+				"          LatestRecordedPopulation as long,",
+				"          LastEditedBy as integer,",
+				"          ValidFrom as timestamp,",
+				"          ValidTo as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     query: 'select *\\nfrom Application.Cities',",
@@ -48,7 +58,18 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          CityID,",
+				"          CityName,",
+				"          StateProvinceID,",
+				"          Location,",
+				"          LatestRecordedPopulation,",
+				"          LastEditedBy,",
+				"          ValidFrom,",
+				"          ValidTo,",
+				"          SK",
+				"     )) ~> sink1"
 			]
 		}
 	}
