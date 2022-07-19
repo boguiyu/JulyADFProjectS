@@ -1,0 +1,16 @@
+{
+	"name": "store1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Source",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "Application",
+			"table": "Cities"
+		}
+	}
+}
