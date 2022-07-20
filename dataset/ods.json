@@ -1,8 +1,8 @@
 {
-	"name": "ods_destination",
+	"name": "ods",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ODS",
+			"referenceName": "Azure SQL db",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],

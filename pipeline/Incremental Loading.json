@@ -25,6 +25,103 @@
 					},
 					"traceLevel": "Fine"
 				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Data flow1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"sink": {
+									"name": "CityID",
+									"type": "Int32"
+								}
+							},
+							{
+								"sink": {
+									"name": "CityName",
+									"type": "String"
+								}
+							},
+							{
+								"sink": {
+									"name": "StateProvinceID",
+									"type": "Int32"
+								}
+							},
+							{
+								"sink": {
+									"name": "Location"
+								}
+							},
+							{
+								"sink": {
+									"name": "LatestRecordedPopulation",
+									"type": "Int64"
+								}
+							},
+							{
+								"sink": {
+									"name": "LastEditedBy",
+									"type": "Int32"
+								}
+							},
+							{
+								"sink": {
+									"name": "ValidFrom",
+									"type": "DateTime"
+								}
+							},
+							{
+								"sink": {
+									"name": "ValidTo",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"outputs": [
+					{
+						"referenceName": "ods",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": [],

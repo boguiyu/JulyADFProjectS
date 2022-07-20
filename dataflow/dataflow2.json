@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ods_destination",
+						"referenceName": "ods",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -48,16 +48,18 @@
 				"source1 keyGenerate(output(SK as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey1",
-				"surrogateKey1 derive(SK = currentDate()) ~> WM",
+				"surrogateKey1 derive(WM = currentDate()) ~> WM",
 				"WM sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",
 				"     updateable:false,",
 				"     upsertable:false,",
+				"     recreate:true,",
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 1,",
 				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          CityID,",
@@ -68,7 +70,8 @@
 				"          LastEditedBy,",
 				"          ValidFrom,",
 				"          ValidTo,",
-				"          SK",
+				"          SK,",
+				"          WM",
 				"     )) ~> sink1"
 			]
 		}

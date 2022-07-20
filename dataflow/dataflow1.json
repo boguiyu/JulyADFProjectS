@@ -35,31 +35,19 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "store1",
-						"type": "DatasetReference"
-					},
 					"name": "sink3"
 				},
 				{
-					"dataset": {
-						"referenceName": "store1",
-						"type": "DatasetReference"
-					},
 					"name": "sink4"
 				},
 				{
 					"dataset": {
-						"referenceName": "ods_destination",
+						"referenceName": "ods",
 						"type": "DatasetReference"
 					},
 					"name": "sink5"
 				},
 				{
-					"dataset": {
-						"referenceName": "store1",
-						"type": "DatasetReference"
-					},
 					"name": "sink6"
 				}
 			],
@@ -129,24 +117,14 @@
 				"surrogateKey4 derive(WaterMark = currentDate()) ~> WaterMark3",
 				"WaterMark2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink3",
+				"     format: 'table') ~> sink3",
 				"WaterMark3 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink4",
+				"     format: 'table') ~> sink4",
 				"WaterMark sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
@@ -159,14 +137,8 @@
 				"     errorHandlingOption: 'stopOnFirstError') ~> sink5",
 				"WaterMark1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink6"
+				"     skipDuplicateMapOutputs: true) ~> sink6"
 			]
 		}
 	}
