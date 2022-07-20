@@ -46,11 +46,7 @@
 				"type": "datetime2",
 				"scale": 7
 			}
-		],
-		"typeProperties": {
-			"schema": "Application",
-			"table": "Cities"
-		}
+		]
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }
